@@ -19,29 +19,29 @@ def _(os):
 
 @app.cell
 def _( mo, pl, pd):
-    df = pd.read_csv(str(mo.notebook_location() / "public" / "all_patches_stats.csv"))
-    df.keys()
+    df = pl.read_csv(str(mo.notebook_location() / "public" / "all_patches_stats.csv"),infer_schema_length=10000)
+    df.head()
     return (df,)
 
 
 @app.cell
 def _(df):
     search_tool='SolGPT'
-    df[df['Tool'] ==search_tool]
+    df.filter(pl.col('Tool') == search_tool)
     return
 
 
 @app.cell
 def _(df):
     search_contract='reentrance.sol'
-    df[df['Original'] ==search_contract]
+    df.filter(pl.col('Original') == search_contract)
     return (search_contract,)
 
 
 @app.cell
 def _(df, search_contract):
     search_patch='reentrance.sol'
-    df[df['Patch'] ==search_patch]
+    df.filter(pl.col('Patch') == search_patch)
     return
 
 
