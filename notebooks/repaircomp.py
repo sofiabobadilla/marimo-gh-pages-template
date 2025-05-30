@@ -3,27 +3,25 @@ import marimo
 __generated_with = "0.13.15"
 app = marimo.App(width="medium")
 
-
+@app.cell
 def _(): 
     import marimo as mo
     import pandas as pd
-    return pd,mo
-
-@app.cell
-def _(pd):
+    import polars as pl
     import os
-            
+    return pd,mo, pl, os
+
+@app.cell
+def _(os):    
     print(os.getcwd())
-    return (df,)
+    return
 
 
 @app.cell
-def _(df):
-    import pandas as pd
-    import marimo as mo
+def _( mo, pl, pd):
     df = pd.read_csv(str(mo.notebook_location() / "public" / "all_patches_stats.csv"))
     df.keys()
-    return
+    return (df,)
 
 
 @app.cell
