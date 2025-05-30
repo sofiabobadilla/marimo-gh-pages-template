@@ -39,7 +39,7 @@ def _(df, mo):
 def _(pd):
     import os
     print(os.getcwd())
-    df = pd.read_csv("results/smartbugs/data_analysis/all_patches_stats.csv")
+    df = pd.read_csv("../results/smartbugs/data_analysis/all_patches_stats.csv")
     return (df,)
 
 
