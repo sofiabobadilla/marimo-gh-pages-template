@@ -4,47 +4,24 @@ __generated_with = "0.13.15"
 app = marimo.App(width="medium")
 
 
-@app.cell
-def _():
+def _(): 
     import marimo as mo
     import pandas as pd
-
-    def __():
-        # Try loading one of your CSV files
-        try:
-            df = pd.read_csv("../results/smartbugs/data_analysis/all_patches_stats.csv")
-            mo.md(f"✅ Successfully loaded data: {len(df)} rows")
-            return df
-        except FileNotFoundError:
-            mo.md("❌ CSV file not found - make sure it's in the same directory")
-            return None
-
-
-
-    return mo, pd
-
-
-@app.cell
-def _(df, mo):
-    def __():
-        # Display data if loaded
-        if df is not None:
-            return mo.ui.table(df.head(10))
-        else:
-            return mo.md("No data to display")
-    return
-
+    return pd,mo
 
 @app.cell
 def _(pd):
     import os
+            
     print(os.getcwd())
-    df = pd.read_csv("../results/smartbugs/data_analysis/all_patches_stats.csv")
     return (df,)
 
 
 @app.cell
 def _(df):
+    import pandas as pd
+    import marimo as mo
+    df = pd.read_csv(str(mo.notebook_location() / "public" / "all_patches_stats.csv"))
     df.keys()
     return
 
@@ -66,7 +43,7 @@ def _(df):
 @app.cell
 def _(df, search_contract):
     search_patch='reentrance.sol'
-    df[df['Patch'] ==search_contract]
+    df[df['Patch'] ==search_patch]
     return
 
 
