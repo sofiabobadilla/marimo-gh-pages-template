@@ -33,7 +33,7 @@ jobs:
       - name: Copy data files to notebooks/public
         run: |
            mkdir -p notebooks/public
-           cp results/smartbugs/data_sanalysis/all_patches_stats.csv notebooks/public/
+           cp results/smartbugs/data_analysis/all_patches_stats.csv notebooks/public/
            ls -la notebooks/public/  # Verify the copy worked
           
 
